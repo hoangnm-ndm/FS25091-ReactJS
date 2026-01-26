@@ -17,8 +17,26 @@ function App() {
     // thay đổi lại state bằng chính mảng mới đó
     setData(filtered);
   }
+  // * Khi ấn nút ẩn bộ lọc thì sẽ ẩn bộ lọc đi và thay chữ trong nút là Hiển thị bộ lọc
+  // * Khi ấn nút hiển thị bộ lọc thì ngược lại với yêu cầu trên
+  // * Kiến thức sử dụng: Toán tử, state, render
+  const [hidden, setHidden] = useState();
   return (
     <>
+      <input type="text" name="" id="" />
+      <button onClick={() => setHidden(!hidden)}>
+        {hidden ? "Hiển thị" : "Ẩn"} bộ lọc
+      </button>
+      {!hidden && (
+        <div>
+          <p>Bộ lọc</p>
+          <div>
+            <select>
+              <option value="">Chon loc</option>
+            </select>
+          </div>
+        </div>
+      )}
       <div className="productList">
         {data.map((item) => (
           // Đưa hàm xoá sản phẩm vào component con thông qua state
