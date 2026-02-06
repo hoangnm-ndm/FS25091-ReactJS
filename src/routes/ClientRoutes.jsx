@@ -3,23 +3,45 @@ import AboutPage from "../pages/AboutPage";
 import HomePage from "../pages/HomePage";
 import Products from "../pages/Products";
 import ProductDetail from "../pages/ProductDetail";
+import ClientLayout from "../components/layouts/ClientLayout";
+import LoginPage from "../pages/auth/LoginPage";
+import RegisterPage from "../pages/auth/RegisterPage";
 
 export const ClientRoutes = [
-  { path: "/", element: <HomePage /> },
   {
-    path: "/about",
-    element: <AboutPage />,
-  },
-  {
-    path: "/products",
+    path: "/",
+    element: <ClientLayout />,
     children: [
+      { index: true, element: <HomePage /> },
       {
-        index: true,
-        element: <Products />,
+        path: "/auth",
+        children: [
+          {
+            path: "login",
+            element: <LoginPage />,
+          },
+          {
+            path: "register",
+            element: <RegisterPage />,
+          },
+        ],
       },
       {
-        path: ":id",
-        element: <ProductDetail />,
+        path: "/about",
+        element: <AboutPage />,
+      },
+      {
+        path: "/products",
+        children: [
+          {
+            index: true,
+            element: <Products />,
+          },
+          {
+            path: ":id",
+            element: <ProductDetail />,
+          },
+        ],
       },
     ],
   },

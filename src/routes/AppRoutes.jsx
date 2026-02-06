@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter, Link, RouterProvider } from "react-router";
 import { ClientRoutes } from "./ClientRoutes";
 import { AdminRoutes } from "./AdminRoutes";
+import ClientLayout from "../components/layouts/ClientLayout";
 
 const router = createBrowserRouter([
   ...ClientRoutes,
@@ -9,9 +10,11 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: (
-      <div>
-        404 <Link to={"/"}>Quay ve trang chu</Link>
-      </div>
+      <ClientLayout>
+        <div>
+          404 <Link to={"/"}>Quay ve trang chu</Link>
+        </div>
+      </ClientLayout>
     ),
   },
 ]);
