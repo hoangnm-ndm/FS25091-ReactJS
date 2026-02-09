@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -46,6 +47,7 @@ const LoginPage = () => {
         >
           Đăng nhập
         </button>
+        <Link to="/auth/register">Đăng ký tại đây</Link>
       </form>
     </div>
   );
