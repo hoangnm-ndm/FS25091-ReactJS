@@ -1,14 +1,26 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
+import { data, useNavigate } from "react-router";
 
 const RegisterPage = () => {
+  const nav = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log("dang ky");
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await axios.post(
+        "https://api-class-o1lo.onrender.com/api/quoclc/auth/register",
+        data,
+      );
+      alert("Dang ky thanh cong");
+      nav("/auth/login");
+    } catch (error) {
+      console.log(error.response);
+      alert(error.response.data.message);
+    }
   };
   return (
     <div
