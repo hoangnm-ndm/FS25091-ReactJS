@@ -1,6 +1,6 @@
 //* Component là 1 thành phần riêng biệt góp phần xây dựng giao diện trong ứng dụng react: giúp tái sử dụng code, dễ maintain, bảo trì...
 
-import { Link, useLocation } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 
 function Header() {
   const location = useLocation();
@@ -17,13 +17,18 @@ function Header() {
       <nav>
         <ul style={{ display: "flex", gap: 6, listStyle: "none" }}>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? "kich-hoat" : "")}
+              to="/"
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/products">Shop</Link>
+            <NavLink to="/products">Shop</NavLink>
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <NavLink to="/about">About Us</NavLink>
           </li>
         </ul>
       </nav>
