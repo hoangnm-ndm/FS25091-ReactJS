@@ -18,3 +18,16 @@ a {
 .kich-hoat {
   color: pink;
 }
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4;
+  label {
+    font-size: 18px;
+  }
+  input {
+    height: 30px;
+    border-radius: 5px;
+  }
+}
