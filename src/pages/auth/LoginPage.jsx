@@ -6,7 +6,6 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({ email, password });
   };
   return (
     <div

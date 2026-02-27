@@ -4,7 +4,6 @@ import { Link, NavLink, useLocation } from "react-router";
 
 function Header() {
   const location = useLocation();
-  console.log(location);
   return (
     <header
       style={{
