@@ -1,3 +1,9 @@
+@import "tailwindcss";
+
+a {
+  text-decoration: none;
+}
+
 form {
   border: 1px solid #ccc;
   padding: 32px 24px;
@@ -6,4 +12,8 @@ form {
   margin: 100px auto;
   border-radius: 12px;
   box-shadow: 10px 12px 12px 10px rgba(0, 0, 0, 0.4);
+}
+
+.active {
+  color: red;
 }

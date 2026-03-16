@@ -5,6 +5,7 @@ import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
 import AboutPage from "../pages/client/AboutPage";
 import HomePage from "../pages/client/HomePage";
+import ProfileMePage from "../pages/client/ProfileMePage";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/about-us", element: <AboutPage /> },
+      { path: "/profile-me", element: <ProfileMePage /> },
     ],
   },
 

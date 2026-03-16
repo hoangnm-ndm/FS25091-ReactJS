@@ -1,28 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router";
+import ItemLink from "./common/ItemLink";
 
 const Header = () => {
   return (
     <header>
       <div className="logo">Logo</div>
       <nav>
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-
-          <li>
-            <NavLink to="/about-us">About Us</NavLink>
-          </li>
-          <li>
-            <NavLink to="/register">Register</NavLink>
-          </li>
-          <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
-          {/* <li>
-            <NavLink></NavLink>
-          </li> */}
+        <ul className="flex justify-end items-center">
+          <ItemLink to="/">Home</ItemLink>
+          <ItemLink to="/about-us">About Us</ItemLink>
+          <ItemLink to="/profile-me">Profile</ItemLink>
+          <ItemLink to="/register">Register</ItemLink>
+          <ItemLink to="/login">Login</ItemLink>
         </ul>
       </nav>
     </header>

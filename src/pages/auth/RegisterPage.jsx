@@ -1,119 +1,80 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import z from "zod";
+import { Link, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerAuth } from "../../api/auth";
-import { useNavigate } from "react-router";
-
-const registerSchema = z.object({
-  email: z.string().email("Email không đúng định dạng"),
-  password: z.string().min(6, "Password tối thiểu 6 ký tự"),
-  confirmPass: z.string().min(6, "Confirm Password tối thiểu 6 ký tự"),
-  gender: z.string(),
-});
+import { toast } from "react-toastify";
+import api from "../../api";
+import { registerAuthSchema } from "../../authSchema";
 
 const RegisterPage = () => {
   const nav = useNavigate();
-
   const {
-    handleSubmit,
     register,
+    handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerAuthSchema),
   });
-
   const onSubmit = async (data) => {
-    try {
-      const res = await registerAuth({ ...data, confirmPass: undefined });
-      // Bao thanh cong!
-      // if (res.data.accessToken) {
-      //   nav("/login");
-      // } else {
-      //   reset(), console.log(res.data);
-      // }
-    } catch (error) {
-      // console.log(error);
-    }
+    const res = await api.post("/register", data);
+    toast.success("Đăng ký thành công, đăng nhập ngay!");
+    nav("/login");
   };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Register now!</h1>
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="px-10 py-5 mx-auto my-16 border rounded-xl border-slate-400 w-md"
+      >
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input {...register("email")} type="email" className="form-control" />
+          {errors.email && (
+            <p className="text-danger">{errors.email?.message}</p>
+          )}
+        </div>
 
-      <div className="mb-3">
-        <label htmlFor="email" className="form-label">
-          Email
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          {...register("email", { required: true })}
-        />
-        {errors.email?.message && (
-          <p className="text-danger">{errors.email?.message}</p>
-        )}
-      </div>
+        <div className="mb-3">
+          <label htmlFor="fullname" className="form-label">
+            Full Name
+          </label>
+          <input
+            {...register("fullname")}
+            type="text"
+            className="form-control"
+          />
 
-      <div className="mb-3">
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          {...register("password", { required: true })}
-        />
-        {errors.password?.message && (
-          <p className="text-danger">{errors.password?.message}</p>
-        )}
-      </div>
+          {errors.fullname && (
+            <p className="text-danger">{errors.fullname?.message}</p>
+          )}
+        </div>
 
-      <div className="mb-3">
-        <label htmlFor="password" className="form-label">
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          {...register("confirmPass", { required: true })}
-        />
-        {errors.confirmPass?.message && (
-          <p className="text-danger">{errors.confirmPass?.message}</p>
-        )}
-      </div>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            {...register("password")}
+            type="password"
+            className="form-control"
+          />
 
-      <div className="mb-3">
-        <label htmlFor="genger" className="form-label">
-          Gender
-        </label>
-        <select
-          name=""
-          id=""
-          className="form-control"
-          {...register("gender", { required: true })}
-        >
-          <option value="" key="0">
-            Chọn giới tính
-          </option>
-          <option value="male" key="1">
-            Male
-          </option>
-          <option value="female" key="2">
-            Female
-          </option>
-          <option value="other" key="3">
-            Other
-          </option>
-        </select>
-      </div>
+          {errors.password && (
+            <p className="text-danger">{errors.password?.message}</p>
+          )}
+        </div>
 
-      <div className="mb-3">
-        <button className="btn btn-primary w-100">Register</button>
-      </div>
-    </form>
+        <div className="mb-3">
+          <Link to={"/login"}>Do you have an account?</Link>
+        </div>
+
+        <div className="mb-3">
+          <button className="btn btn-primary w-100">Register Now!</button>
+        </div>
+      </form>
+    </>
   );
 };
-
 export default RegisterPage;
