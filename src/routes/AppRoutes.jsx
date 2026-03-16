@@ -1,21 +1,29 @@
 import React from "react";
-import { createBrowserRouter, Link, RouterProvider } from "react-router";
-import { ClientRoutes } from "./ClientRoutes";
-import { AdminRoutes } from "./AdminRoutes";
-import ClientLayout from "../components/layouts/ClientLayout";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import LayoutClient from "../components/layout/LayoutClient";
+import LoginPage from "../pages/auth/LoginPage";
+import RegisterPage from "../pages/auth/RegisterPage";
+import AboutPage from "../pages/client/AboutPage";
+import HomePage from "../pages/client/HomePage";
 
 const router = createBrowserRouter([
-  ...ClientRoutes,
-  ...AdminRoutes,
   {
-    path: "*",
-    element: (
-      <ClientLayout>
-        <div>
-          404 <Link to={"/"}>Quay ve trang chu</Link>
-        </div>
-      </ClientLayout>
-    ),
+    path: "/",
+    element: <LayoutClient />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/about-us", element: <AboutPage /> },
+    ],
+  },
+
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+
+  {
+    path: "/register",
+    element: <RegisterPage />,
   },
 ]);
 const AppRoutes = () => {
