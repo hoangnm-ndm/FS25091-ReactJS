@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import ItemLink from "./common/ItemLink";
+import { AuthContext } from "../../context/AuthContext";
 
 const Header = () => {
+  const { logout } = useContext(AuthContext);
   return (
     <header>
       <div className="logo">Logo</div>
@@ -12,6 +14,7 @@ const Header = () => {
           <ItemLink to="/profile-me">Profile</ItemLink>
           <ItemLink to="/register">Register</ItemLink>
           <ItemLink to="/login">Login</ItemLink>
+          <button onClick={logout}>Logout now!</button>
         </ul>
       </nav>
     </header>
