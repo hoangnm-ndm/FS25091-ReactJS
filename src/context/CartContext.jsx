@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import cartReducer from "./cartReducer";
 
 export const CartContext = createContext();
@@ -30,6 +30,10 @@ const CartProvider = ({ children }) => {
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <CartContext.Provider
