@@ -1,8 +1,151 @@
 @import "tailwindcss";
 
-a {
-  text-decoration: none;
+@import "tailwindcss";
+
+/* ---------------------------------------
+   THEME TOKENS — Màu sắc, font, radius…
+----------------------------------------*/
+@theme {
+  /* ===== COLOR PALETTE ===== */
+  --color-primary: #054e99;
+  --color-primary-light: #0a74d1;
+  --color-primary-dark: #033b73;
+
+  --color-accent: #f6b100;
+  --color-accent-soft: #ffe7a3;
+
+  --color-bg-light: #f6f7f8;
+  --color-bg-soft: #ffffff;
+
+  --color-bg-dark: #0d1117;
+  --color-bg-darker: #090c10;
+
+  --color-text-light: #1f2937; /* slate-800 */
+  --color-text-dark: #d1d5db; /* slate-300 */
+
+  /* ===== FONTS ===== */
+  --font-display: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* ===== BORDER RADIUS ===== */
+  --radius: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ===== SHADOW ===== */
+  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
+
+/* ---------------------------------------
+   GLOBAL BASE STYLES
+----------------------------------------*/
+@layer base {
+  html {
+    font-family: var(--font-body);
+    background: var(--color-bg-light);
+    color: var(--color-text-light);
+  }
+
+  .dark html {
+    background: var(--color-bg-dark);
+    color: var(--color-text-dark);
+  }
+
+  h1 {
+    @apply text-4xl font-bold mb-4 tracking-tight;
+    font-family: var(--font-display);
+  }
+
+  h2 {
+    @apply text-2xl font-semibold mb-3 tracking-tight;
+    font-family: var(--font-display);
+  }
+
+  p {
+    @apply mb-3 leading-relaxed;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Table Minimalist */
+  table {
+    @apply w-full border-collapse text-left;
+  }
+  th {
+    @apply py-3 px-4 bg-slate-100 dark:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300;
+  }
+  td {
+    @apply py-3 px-4 border-b border-slate-200 dark:border-slate-700;
+  }
+}
+
+/* ---------------------------------------
+   COMPONENTS — Buttons, Cards, Inputs…
+----------------------------------------*/
+@layer components {
+  /* ===== BUTTONS ===== */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white shadow hover:bg-primary-light active:bg-primary-dark;
+  }
+
+  .btn-outline {
+    @apply border border-primary text-primary hover:bg-primary hover:text-white;
+  }
+
+  .btn-soft {
+    @apply bg-blue-100 text-blue-700 hover:bg-blue-200;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-white hover:bg-red-600;
+  }
+
+  /* ===== INPUT ===== */
+  .input {
+    @apply w-full px-4 py-2 border border-slate-300 rounded-lg
+    focus:ring-2 focus:ring-primary focus:outline-none
+    dark:bg-slate-800 dark:border-slate-700 dark:text-white;
+  }
+
+  /* ===== CARD ===== */
+  .card {
+    @apply bg-white dark:bg-slate-900 rounded-xl shadow-card p-4 transition-all;
+  }
+
+  .card-soft {
+    @apply bg-slate-50 dark:bg-slate-800 rounded-xl shadow-soft p-4;
+  }
+
+  /* ===== BADGE ===== */
+  .badge {
+    @apply text-sm px-2 py-1 rounded-full;
+  }
+  .badge-primary {
+    @apply bg-primary text-white;
+  }
+  .badge-soft {
+    @apply bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-white;
+  }
+
+  /* ===== SECTION WRAPPER ===== */
+  .section {
+    @apply max-w-7xl mx-auto px-4 py-8;
+  }
+}
+
+/* ---------------------------------------
+   DARK MODE VARIANT
+----------------------------------------*/
+@custom-variant dark (&:where(.dark, .dark *));
 
 form {
   border: 1px solid #ccc;

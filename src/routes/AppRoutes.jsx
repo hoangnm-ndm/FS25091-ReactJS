@@ -7,6 +7,7 @@ import AboutPage from "../pages/client/AboutPage";
 import HomePage from "../pages/client/HomePage";
 import ProfileMePage from "../pages/client/ProfileMePage";
 import CartPage from "../pages/client/CartPage";
+import CounterPage from "../pages/client/CounterPage";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { path: "/about-us", element: <AboutPage /> },
       { path: "/profile-me", element: <ProfileMePage /> },
       { path: "/cart", element: <CartPage /> },
+      { path: "/count", element: <CounterPage /> },
     ],
   },
 
