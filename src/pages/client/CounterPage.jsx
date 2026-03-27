@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, incement } from "../../store/counterAction";
+import { decrement, incement } from "../../store/counter/counterAction";
 
 const CounterPage = () => {
   const { count } = useSelector((state) => state.counter);
